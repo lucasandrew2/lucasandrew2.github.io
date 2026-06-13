@@ -1,119 +1,213 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>WAPH-Lucas Andrew</title>
+        <title>WAPH-Individual-Project-1-Lucas-Andrew</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm.bootstrap@5.3.3/dist/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <style>
+            .bg-1 {
+                background-color: #1abc9c;
+                color: #ffffff;
+            }
+            .bg-2 {
+                background-color: #474e5d;
+                color: #ffffff;
+            }
+            .bg-3 {
+                background-color: #ffffff;
+                color: #555555;
+            }
+            .container-fluid {
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+            .no-bottom-margin {
+                margin-bottom: 0px;
+            }
+        </style>
     </head>
     <body>
-        <div id="top">
+        <div id="welcome-message">
+            <script>
+                if ( document.cookie.indexOf("lastVisit") < 0 ) {
+                    alert("Welcome to my professional website for the first time!");
+                } else {
+                    // For readability, parse "lastVisit=" out of the cookie before displaying "Welcome Back" alert.
+                    let lastVisit = document.cookie.substring(document.cookie.indexOf('=') + 1);
+                    alert("Welcome back! Your last visit was: " + lastVisit);
+                }
+
+                document.cookie = "lastVisit=" + new Date().toLocaleString();
+            </script>
+        </div>
+        <div id="top" class="bg-1 container-fluid">
             <h1>Web Application Programming and Hacking</h1>
             <h2>Individual Project 1: Professional Profile Website</h2>
             <h3>Instructor: Dr. Phu Phung</h3>
-        </div>
-        <div id="digit-clock"></div>
-        <script>
-            function displayTime() {
-                document.getElementById('digit-clock').innerHTML="Current time: " + new Date();
-            }
-            setInterval(displayTime, 500);
-        </script>
-        <div id="external-clock"></div>
-        <canvas id="analog-clock" width="150" height="150" style="background-color:#999"></canvas>
-        <script src="https://waph-phung.github.io/clock.js"></script>
-        <script>
-            var canvas = document.getElementById("analog-clock");
-            var ctx = canvas.getContext("2d");
-            var radius = canvas.height / 2;
-            ctx.translate(radius, radius);
-            radius = radius * 0.90;
-            setInterval(drawClock, 1000);
+            <div id="digit-clock"></div>
+            <script>
+                function displayTime() {
+                    document.getElementById('digit-clock').innerHTML="Current time: " + new Date();
+                }
+                setInterval(displayTime, 500);
+            </script>
+            <div id="external-clock"></div>
+            <canvas id="analog-clock" width="150" height="150" style="background-color:#999"></canvas>
+            <script src="https://waph-phung.github.io/clock.js"></script>
+            <script>
+                var canvas = document.getElementById("analog-clock");
+                var ctx = canvas.getContext("2d");
+                var radius = canvas.height / 2;
+                ctx.translate(radius, radius);
+                radius = radius * 0.90;
+                setInterval(drawClock, 1000);
 
-            function drawClock() {
-                drawFace(ctx, radius);
-                drawNumbers(ctx, radius);
-                drawTime(ctx, radius);
-            }
-        </script>
-        <div id="menubar">
-            <h3>Student: Lucas Andrew</h3>
-            <div id="email" onclick="showhideEmail()">
-                <h4>Show my email</h4>
-            </div>
-            <img src="images/headshot.JPG" alt="My headshot" width="50">
+                function drawClock() {
+                    drawFace(ctx, radius);
+                    drawNumbers(ctx, radius);
+                    drawTime(ctx, radius);
+                }
+            </script>
         </div>
-        <div id="education">
-            <h2>Education</h2>
-            <p>B.S. in Computer Science, University of Kentucky</p>
-        </div>
-        <div id="personal-statement">
-            <h2>Personal Statement</h2>
-            <a>
-                Software engineer with 7 years of experience in the Cyber domain.
-                TODO: rest of statement.
-            </a>
-        </div>
-        <div id="skills">
-            <h2>Skills</h2>
+        <div id="resume" class="bg-3 container-fluid">
+            <h2>Resume</h2>
+            <h3>Lucas Andrew</h3>
+            <h4>My Headshot</h4>
+            <img src="images/headshot.JPG" width="150">
+            <br>
+            <h4>My Email</h4>
+            <div id="email" onclick="showhideEmail()">Click to show my email</div>
+            <script>
+                var shown = false
+                function showhideEmail() {
+                    if (shown) {
+                        document.getElementById('email').innerHTML = "Click to show my email";
+                        shown = false;
+                    } else {
+                        var myemail = "<a href='mailto:andrewl2" + "@" + "mail.uc.edu'>andrewl2-waph" + "@" + "mail.uc.edu</a>"
+                        document.getElementById('email').innerHTML = myemail;
+                        shown = true;
+                    }
+                }
+            </script>
+            <h3>Education</h3>
+            <p>B.S. in Computer Science, University of Kentucky (2015 - 2019)</p>
+            <h3>Objective</h3>
+            <p>
+                Cyber Software Enginer and Technical Lead with 7 years of experience developing software, with a recent specialization in offensive cyber development, reverse engineering, and vulnerability research.
+                Experienced with working across high-level languages and low-level systems programming to create modern web applications and robust offensive cyber applications.
+                Proven leader with experience managing engineering teams, mentoring developers, and delivering high-quality software solutions.
+            </p>
+            <h3 class="no-bottom-margin">Skills</h3>
             <ul>
-                <li>C</li>
-                <li>CMake</li>
-                <li>Python</li>
-                <li>Angular</li>
-                <li>Docker</li>
-                <li>GitLab CI/CD</li>
-                <li>Reverse Engineering</li>
-                <li>Static and Dynamic Analysis</li>
-                <li>E2E Testing</li>
+                <li>Languages: C, Python, TypeScript, Java</li>
+                <li>Reverse Engineering: Malware Analysis, Binary Analysis, Vulnerability Research, Linux internals</li>
+                <li>Tools: Ghidra, IDA Pro, CMake, GDB, Wireshark, Git</li>
+                <li>Web Frameworks: Angular, Node.js</li>
+                <li>Cloud/DevOps: Docker, GitLab CI/CD, Kubernetes, AWS</li>
+                <li>Concepts: System Design, Secure Coding, Static & Dynamic Analysis, Microservices Architecture</li>
+            </ul>
+            <h3>Experience</h3>
+            <h4 class="no-bottom-margin">Principal Cyber Software Engineer (2024 - 2026)</h4>
+            <i>Northrop Grumman</i>
+            <ul>
+                <li>Implemented core features for v1.1.0 release of main offensive cyber application</li>
+                <li>Sole developer that released two standalone cyber applications in 6 months</li>
+                <li>Prototyped critical features for v1.2.0 release of main offensive cyber application in 3 months</li>
+            </ul>
+            <h4 class="no-bottom-margin">Manager Cyber Software Engineering (2023 - 2024)</h4>
+            <i>Northrop Grumman</i>
+            <ul>
+                <li>Managed a team of 15 Cyber Software Engineers</li>
+                <li>Served as Technical Lead of 5 engineers on an offensive cyber application</li>
+                <li>Released v1.0.0 of main offensive cyber application</li>
+            </ul>
+            <h4 class="no-bottom-margin">Cyber Software Engineer (2021 - 2023)</h4>
+            <i>Northrop Grumman</i>
+            <ul>
+                <li>Released 3 QRCs (quick reaction capabilities) in a 6 month span</li>
+                <li>Designed and prototyped an offensive cyber application</li>
+                <li>Architected build system with CMake and GitLab CI/CD</li>
+            </ul>
+            <h4 class="no-bottom-margin">Software Engineer (2020 - 2021)</h4>
+            <i>Northrop Grumman</i>
+            <ul>
+                <li>Full stack developer for web application using the Angular/NestJS/MongoDB stack</li>
+                <li>Designed, led, and implemented major features - Site Wide Filtering, Pagination, and User Preferences</li>
+            </ul>     
+            <h4 class="no-bottom-margin">Associate Software Engineer (2019 - 2020)</h4>
+            <i>Northrop Grumman</i>
+            <ul>
+                <li>Implemented a redesign of a legacy search service using Microservices Architecture with Django REST Framework</li>
+            </ul>                   
+            <h3>Relevant Courses</h3>
+            <ul>
+                <li>
+                    <a href="waph.html">Web Application Programming and Hacking</a>
+                </li>
             </ul>
         </div>
-        <div id="experience">
-            <h2>Experience</h2>
-            <h3>Principal Cyber Software Engineer (2024 - 2026)</h3>
-            <i>Northrop Grumman</i>
-            <p>TODO</p>
-            <h3>Manager Cyber Software Engineering (2023 - 2024)</h3>
-            <i>Northrop Grumman</i>
-            <p>TODO</p>
-            <h3>Cyber Software Engineer (2021 - 2023)</h3>
-            <i>Northrop Grumman</i>
-            <p>TODO</p>
-            <h3>Associate Software Engineer (2019 - 2021)</h3>
-            <i>Northrop Grumman</i>
-            <p>TODO</p>                                    
-        </div>
-        <div id="relevant-courses">
-            <h2>Relevant Courses</h2>
-            <a href="waph.html">WAPH Course Information</a>
-        </div>
-        <div id="joke">
-            <script>
-                $.get("https://v2.jokeapi.dev/joke/Programming?type=any",
-                    function(result) {
-                        if (result == null) {
-                            return;
+        <br>
+        <div id="api-integrations" class="bg-2 container-fluid">
+            <h3>API Integrations</h3>
+            <i>Note: The following contents are third-party generated and I am not responsible for any of the content generated</i>
+            <br>
+            <br>
+            <b>A funny joke:</b>
+            <div id="joke">
+                <script>
+                    $.get("https://v2.jokeapi.dev/joke/Any?type=single",
+                        function(result) {
+                            $("#joke").text(result.joke);
                         }
-                        $("#response").text("A programming joke of the day: " + result.joke);
-                    }
-                )
-            </script>
-        </div>
-        <div id="visitor-counter">
-            <a href="http://s01.flagcounter.com/more/Ix2N">
-                <img src="https://s01.flagcounter.com/count2/Ix2N/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0">
-            </a>
-        </div>
-        <div id="dark-mode">
-            <button id="dark-mode-button">Toggle Dark Mode</button>
-            <script>
-                const button = document.getElementById("dark-mode-button");
-                button.addEventListener("click", function() {
-                    $("body").toggleClass("bg-dark text-white");
-                })
-            </script>
+                    )
+                </script>
+            </div>
+            <br>
+            <b>German Shepherds are my favorite dog breed:</b>
+            <br>
+            <div id="dog">
+                <img id="favorite-dog" width="300">
+                <script>
+                    fetch("https://dog.ceo/api/breed/german/shepherd/images/random")
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("favorite-dog").src = data.message
+                    })
+                </script>
+            </div>
+            <br>
+            <div id="motivational-quote">
+                <h3>Motivational Quote</h3>
+                <p id="quote">Click the button to see a quote</p>
+                <button id="quote-button">
+                    New Quote
+                </button>
+                <script>
+                    const quotes = [
+                        "Success is the sum of small efforts repeated daily.",
+                        "First solve the problem, then write the code.",
+                        "Programming is not about what you know, it is about what you can figure out.",
+                        "while (! ( succeed = try() ) );",
+                        "Simplicity is prerequisite for reliability.",
+                    ];
+                    
+                    $("#quote-button").click(function() {
+                        const index = Math.floor(Math.random() * quotes.length);
+                        $("#quote").text(quotes[index]);
+                    });
+                </script>
+            </div>
+            <br>
+            <div id="visitor-counter">
+                <a href="http://s01.flagcounter.com/more/Ix2N">
+                    <img src="https://s01.flagcounter.com/count2/Ix2N/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0">
+                </a>
+            </div>
+            <br>
         </div>
     </body>
 </html>
