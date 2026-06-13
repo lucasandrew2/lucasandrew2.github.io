@@ -7,6 +7,7 @@
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
         <style>
             .bg-1 {
                 background-color: #1abc9c;
@@ -87,7 +88,7 @@
                         document.getElementById('email').innerHTML = "Click to show my email";
                         shown = false;
                     } else {
-                        var myemail = "<a href='mailto:andrewl2" + "@" + "mail.uc.edu'>andrewl2-waph" + "@" + "mail.uc.edu</a>"
+                        var myemail = "<a href='mailto:andrewl2" + "@" + "mail.uc.edu'>andrewl2" + "@" + "mail.uc.edu</a>"
                         document.getElementById('email').innerHTML = myemail;
                         shown = true;
                     }
@@ -159,11 +160,15 @@
             <b>A funny joke:</b>
             <div id="joke">
                 <script>
-                    $.get("https://v2.jokeapi.dev/joke/Any?type=single",
-                        function(result) {
-                            $("#joke").text(result.joke);
-                        }
-                    )
+                    function getJoke() {
+                        $.get("https://v2.jokeapi.dev/joke/Any?type=single",
+                            function(result) {
+                                $("#joke").text(result.joke);
+                            }
+                        );
+                    }
+                    getJoke();
+                    setInterval(getJoke, 60000);
                 </script>
             </div>
             <br>
@@ -180,24 +185,27 @@
                 </script>
             </div>
             <br>
-            <div id="motivational-quote">
+            <div ng-app="quote-app" ng-controller="quote-controller">
                 <h3>Motivational Quote</h3>
-                <p id="quote">Click the button to see a quote</p>
-                <button id="quote-button">
+                <p>{{ quote }}</p>
+                <button ng-click="getQuote()">
                     New Quote
                 </button>
                 <script>
-                    const quotes = [
-                        "Success is the sum of small efforts repeated daily.",
-                        "First solve the problem, then write the code.",
-                        "Programming is not about what you know, it is about what you can figure out.",
-                        "while (! ( succeed = try() ) );",
-                        "Simplicity is prerequisite for reliability.",
-                    ];
-                    
-                    $("#quote-button").click(function() {
-                        const index = Math.floor(Math.random() * quotes.length);
-                        $("#quote").text(quotes[index]);
+                    var app = angular.module('quote-app', []);
+                    app.controller('quote-controller', function($scope) {
+                        $scope.quotes = [
+                            "Success is the sum of small efforts repeated daily.",
+                            "First solve the problem, then write the code.",
+                            "Programming is not about what you know, it is about what you can figure out.",
+                            "while (! ( succeed = try() ) );",
+                            "Simplicity is prerequisite for reliability.",
+                        ];
+                        $scope.quote = $scope.quotes[0];
+                        $scope.getQuote = function() {
+                            var index = Math.floor(Math.random() * $scope.quotes.length);
+                            $scope.quote = $scope.quotes[index];
+                        };
                     });
                 </script>
             </div>
