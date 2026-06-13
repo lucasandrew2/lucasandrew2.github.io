@@ -36,7 +36,6 @@
                 if ( document.cookie.indexOf("lastVisit") < 0 ) {
                     alert("Welcome to my professional website for the first time!");
                 } else {
-                    // For readability, parse "lastVisit=" out of the cookie before displaying "Welcome Back" alert.
                     let lastVisit = document.cookie.substring(document.cookie.indexOf('=') + 1);
                     alert("Welcome back! Your last visit was: " + lastVisit);
                 }
